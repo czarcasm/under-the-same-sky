@@ -1,0 +1,196 @@
+{
+  "title": "Under the Same Sky",
+  "metadata": {
+    "recipient": "Shivanjali",
+    "creator": "Harshit",
+    "starName": "Regulus",
+    "constellation": "Leo",
+    "dedicationDate": "2026-08-09",
+    "version": "0.2"
+  },
+  "pages": [
+    {
+      "title": "Home",
+      "slug": "home",
+      "sections": [
+        {
+          "title": "Hero",
+          "blocks": [
+            {
+              "type": "heading",
+              "text": "⭐ REGULUS"
+            },
+            {
+              "type": "subtitle",
+              "text": "The Heart of Leo"
+            },
+            {
+              "type": "dedication",
+              "text": "Dedicated to Shivanjali"
+            },
+            {
+              "type": "date",
+              "text": "9 August 2026"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Letter",
+      "slug": "letter",
+      "sections": [
+        {
+          "title": "Your Letter",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Hi Love,"
+            },
+            {
+              "type": "paragraph",
+              "text": "Some gifts fade. Flowers wilt. Chocolates disappear. Even photographs become old."
+            },
+            {
+              "type": "paragraph",
+              "text": "But I wanted to give you something that would always be waiting whenever you looked up."
+            },
+            {
+              "type": "paragraph",
+              "text": "So today, I dedicate the brightest light in the heart of Leo to you."
+            },
+            {
+              "type": "paragraph",
+              "text": "Every time we find this star together, I hope it reminds you that no matter where life takes us, my heart will always find its way back to yours."
+            },
+            {
+              "type": "paragraph",
+              "text": "Happy Birthday."
+            },
+            {
+              "type": "signature",
+              "text": "❤️ Harshit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Star Facts",
+      "slug": "about",
+      "sections": [
+        {
+          "title": "Star Credentials",
+          "blocks": [
+            {
+              "type": "fact",
+              "label": "⭐ Star",
+              "value": "Regulus"
+            },
+            {
+              "type": "fact",
+              "label": "♌ Constellation",
+              "value": "Leo"
+            },
+            {
+              "type": "fact",
+              "label": "✨ Meaning",
+              "value": "Heart of the Lion"
+            },
+            {
+              "type": "fact",
+              "label": "🌍 Distance",
+              "value": "79 light years"
+            },
+            {
+              "type": "fact",
+              "label": "🔭 Magnitude",
+              "value": "1.35"
+            },
+            {
+              "type": "fact",
+              "label": "👑 Also known as",
+              "value": "The Little King"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Gallery",
+      "slug": "gallery",
+      "sections": [
+        {
+          "title": "Our Moments",
+          "blocks": [
+            {
+              "type": "gallery",
+              "images": [
+                { "src": "images/wedding.jpg", "caption": "Wedding" },
+                { "src": "images/trip1.jpg", "caption": "Trip Moment" },
+                { "src": "images/baby.jpg", "caption": "Nitvika" },
+                { "src": "images/funny.jpg", "caption": "Funny Moments" },
+                { "src": "images/trip2.jpg", "caption": "Special Travel" },
+                { "src": "images/us.jpg", "caption": "Together" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Timeline",
+      "slug": "timeline",
+      "sections": [
+        {
+          "title": "Our Cosmos",
+          "blocks": [
+            {
+              "type": "timeline_event",
+              "marker": "❤️",
+              "title": "First Met",
+              "description": "The beginning of us"
+            },
+            {
+              "type": "timeline_event",
+              "marker": "💍",
+              "title": "Married",
+              "description": "Two orbits become one"
+            },
+            {
+              "type": "timeline_event",
+              "marker": "👶",
+              "title": "Nitvika",
+              "description": "Our brightest light born"
+            },
+            {
+              "type": "timeline_event",
+              "marker": "⭐",
+              "title": "Regulus Dedicated",
+              "description": "9 August 2026"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Final Quote",
+      "slug": "quote",
+      "sections": [
+        {
+          "title": "Closing",
+          "blocks": [
+            {
+              "type": "quote",
+              "text": "Whenever life feels overwhelming... look up. Somewhere in the heart of Leo, there is a light I've chosen to remind me of you."
+            },
+            {
+              "type": "signature",
+              "text": "— Harshit"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

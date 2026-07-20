@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Keepsake Engine Unit Tests</title>
+</head>
+
+<body style="background: #111827; color: #f9fafb; font-family: sans-serif; padding: 2rem;">
+    <h1>Keepsake Engine Test Suite</h1>
+    <p>Open the Developer Console (Press <strong>F12</strong> or right-click -> Inspect) to view the test results.</p>
+    <div id="test-summary" style="font-size: 1.2rem; margin-top: 2rem; font-weight: bold;">Running tests...</div>
+
+    <script type="module">
+        import { Story } from './src/model/Story.js';
+        import { Page } from './src/model/Page.js';
+        import { Section } from './src/model/Section.js';
+        import { ContentBlock } from './src/model/ContentBlock.js';
+
+        // A minimalist, lightweight test assertion engine for the browser
+        let passed = 0;
+        let failed = 0;
+
+        function describe(name, fn) {
+            console.log(`\n%c📦 Suite: ${name}`, 'font-weight: bold; color: #60a5fa; font-size: 1.1rem;');
+            fn();
+        }
+
+        function it(behavior, fn) {
+            try {
+                fn();
+                console.log(`%c  ✓ passed: ${behavior}`, 'color: #34d399;');
+                passed++;
+            } catch (error) {
+                console.error(`  ✗ failed: ${behavior}\n`, error);
+                failed++;
+            }
+        }
+
+        function expect(actual) {
+            return {
+                toBe(expected) {
+                    if (actual !== expected) {
+                        throw new Error(`Expected ${expected} but received ${actual}`);
+                    }
+                },
+                toContain(str) {
+                    if (!actual.includes(str)) {
+                        throw new Error(`Expected "${actual}" to contain "${str}"`);
+                    }
+                },
+                toThrow() {
+                    let didThrow = false;
+                    try { actual(); } catch (e) { didThrow = true; }
+                    if (!didThrow) {
+                        throw new Error(`Expected function to throw an error, but it succeeded.`);
+                    }
+                }
+            };
+        }
+
+        // --- THE UNIT TEST SUITE ---
+        describe('Digital Keepsake Domain Architecture', () => {
+
+            it('should immutably compose a multi-page memory vault structure', () => {
+                const block = new ContentBlock("paragraph", { text: "Some gifts fade. Flowers wilt." });
+                const section = new Section("Your Letter", [block]);
+                const page = new Page("Letter", "letter", [section]);
+                const keepsake = new Story("Under the Same Sky", { recipient: "Shivanjali" });
+
+                keepsake.addPage(page);
+
+                expect(keepsake.title).toBe("Under the Same Sky");
+                expect(keepsake.pages.length).toBe(1);
+                expect(keepsake.pages[0].slug).toBe("letter");
+                expect(keepsake.pages[0].sections[0].blocks[0].properties.text).toContain("Flowers wilt");
+            });
+
+            it('should reject non-unique page entries tracking strict data integrity', () => {
+                const keepsake = new Story("Keepsake Vault");
+                keepsake.addPage(new Page("Home Base", "home"));
+
+                expect(() => {
+                    keepsake.addPage(new Page("Duplicate Home", "home"));
+                }).toThrow();
+            });
+        });
+
+        // Update UI summary element
+        const summary = document.getElementById('test-summary');
+        if (failed === 0) {
+            summary.innerHTML = `✨ All ${passed} tests passed successfully!`;
+            summary.style.color = '#34d399';
+        } else {
+            summary.innerHTML = `❌ Tests complete: ${passed} passed, ${failed} failed. Check console details.`;
+            summary.style.color = '#f87171';
+        }
+    </script>
+</body>
+
+</html>

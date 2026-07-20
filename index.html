@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Shivanjali</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Inter:wght@200;300;400&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="./src/css/style.css">
+</head>
+
+<body>
+
+    <canvas id="starfield"></canvas>
+
+    <div id="intro-overlay">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 2rem;">
+            <div class="radar" id="intro-radar"></div>
+            <div class="intro-text" id="intro-status">Searching the night sky...</div>
+        </div>
+    </div>
+
+    <main id="app-container"></main>
+
+    <div id="easter-egg">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <div class="egg-text">"The real star was never in the sky.<br>It has always been you."</div>
+            <button class="close-egg" id="close-egg-btn">Return to the skies</button>
+        </div>
+    </div>
+
+    <script type="module">
+        import { Story } from './src/model/Story.js';
+        import { Page } from './src/model/Page.js';
+        import { Section } from './src/model/Section.js';
+        import { ContentBlock } from './src/model/ContentBlock.js';
+
+        // 1. Particle Starfield Engine
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+
+        function initStars() {
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            stars = Array.from({ length: 80 }, () => ({
+                x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+                radius: Math.random() * 1.0, alpha: Math.random(), speed: 0.004 + Math.random() * 0.006
+            }));
+        }
+        function drawStars() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            stars.forEach(s => {
+                s.alpha += s.speed; if (s.alpha > 1 || s.alpha < 0) s.speed = -s.speed;
+                ctx.beginPath(); ctx.fillStyle = `rgba(255,255,255,${Math.max(0, s.alpha)})`;
+                ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2); ctx.fill();
+            });
+            requestAnimationFrame(drawStars);
+        }
+        window.addEventListener('resize', initStars); initStars(); drawStars();
+
+        // 2. Cinematic Radar Boot Flow
+        window.addEventListener('DOMContentLoaded', async () => {
+            const status = document.getElementById('intro-status');
+            setTimeout(() => { status.innerHTML = "Star Point Located. Locking Orbit..."; }, 1600);
+            setTimeout(() => { status.innerHTML = "Star Found: Regulus"; }, 3200);
+            setTimeout(() => {
+                document.getElementById('intro-overlay').style.opacity = '0';
+                document.getElementById('intro-overlay').style.visibility = 'hidden';
+                triggerScrollReveal();
+            }, 4800);
+
+            try {
+                const response = await fetch('./src/data/story.json');
+                const rawData = await response.json();
+
+                const keepsakeStory = new Story(rawData.title, rawData.metadata);
+
+                rawData.pages.forEach(pData => {
+                    const pageInstance = new Page(pData.title, pData.slug);
+                    pData.sections.forEach(sData => {
+                        const sectionInstance = new Section(sData.title);
+                        sData.blocks.forEach(bData => {
+                            sectionInstance.addBlock(new ContentBlock(bData.type, bData));
+                        });
+                        pageInstance.addSection(sectionInstance);
+                    });
+                    keepsakeStory.addPage(pageInstance);
+                });
+
+                renderEngineUI(keepsakeStory);
+            } catch (err) {
+                console.error("Hydration core parsing crash: ", err);
+            }
+        });
+
+        // 3. Complete UX Navigation Rendering Engine
+        function renderEngineUI(storyInstance) {
+            const app = document.getElementById('app-container');
+
+            storyInstance.pages.forEach(page => {
+                const pageSection = document.createElement('section');
+                pageSection.id = page.slug;
+                pageSection.className = 'reveal';
+
+                page.sections.forEach(sec => {
+                    const container = document.createElement('div');
+                    container.className = 'section-container';
+
+                    if (sec.title !== "Hero" && sec.title !== "Closing" && sec.title !== "Your Letter") {
+                        const heading = document.createElement('h2');
+                        heading.className = 'cinzel';
+                        heading.style.color = 'var(--gold)';
+                        heading.style.marginBottom = '3rem';
+                        heading.style.fontSize = '1.3rem';
+                        heading.textContent = sec.title;
+                        container.appendChild(heading);
+                    }
+
+                    let currentTimelineContainer = null;
+
+                    sec.blocks.forEach(block => {
+                        const props = block.properties;
+
+                        if (block.type === 'heading') {
+                            const el = document.createElement('h1'); el.className = 'hero-title'; el.textContent = props.text;
+                            container.appendChild(el);
+                        }
+                        else if (block.type === 'subtitle') {
+                            const el = document.createElement('p'); el.className = 'hero-subtitle'; el.textContent = props.text;
+                            container.appendChild(el);
+                        }
+                        else if (block.type === 'dedication') {
+                            const el = document.createElement('p'); el.className = 'dedication-block';
+                            el.innerHTML = `Dedicated to <span>Shivanjali</span>`;
+                            container.appendChild(el);
+                        }
+                        else if (block.type === 'date') {
+                            const el = document.createElement('div'); el.className = 'date-badge'; el.textContent = props.text;
+                            container.appendChild(el);
+
+                            const starNode = document.createElement('div');
+                            starNode.className = 'interactive-star-node';
+                            starNode.innerHTML = `<div class="star-element">✦</div><div class="star-hint">Touch the light</div>`;
+                            starNode.addEventListener('click', trackTaps);
+                            container.appendChild(starNode);
+                        }
+                        else if (block.type === 'paragraph') {
+                            const el = document.createElement('p'); el.className = 'letter-paragraph'; el.textContent = props.text;
+                            container.appendChild(el);
+                        }
+                        else if (block.type === 'signature') {
+                            const el = document.createElement('div'); el.className = 'signature-block'; el.textContent = props.text;
+                            container.appendChild(el);
+                        }
+                        else if (block.type === 'quote') {
+                            const el = document.createElement('p'); el.className = 'quote-block'; el.textContent = props.text;
+                            container.appendChild(el);
+
+                            const buttonEl = document.createElement('a');
+                            buttonEl.className = 'app-btn';
+                            buttonEl.href = "https://stellarium-web.org/skysource/Regulus";
+                            buttonEl.target = "_blank";
+                            buttonEl.textContent = "Find Regulus Tonight";
+                            container.appendChild(buttonEl);
+
+                            const descEl = document.createElement('p');
+                            descEl.className = 'btn-desc';
+                            descEl.textContent = "Align your screen upward to trace the target trajectory directly into the heart of Leo.";
+                            container.appendChild(descEl);
+                        }
+                        else if (block.type === 'fact') {
+                            let table = container.querySelector('.table-container');
+                            if (!table) {
+                                table = document.createElement('div'); table.className = 'table-container';
+                                container.appendChild(table);
+                            }
+                            const row = document.createElement('div'); row.className = 'fact-row';
+                            row.innerHTML = `<span class="fact-label">${props.label}</span><span class="fact-value">${props.value}</span>`;
+                            table.appendChild(row);
+                        }
+                        else if (block.type === 'gallery') {
+                            const wrapper = document.createElement('div');
+                            wrapper.className = 'gallery-wrapper';
+
+                            const track = document.createElement('div');
+                            track.className = 'gallery-track';
+
+                            props.images.forEach(imgData => {
+                                const slide = document.createElement('div');
+                                slide.className = 'gallery-slide';
+
+                                const img = document.createElement('img');
+                                img.src = imgData.src;
+                                img.alt = imgData.caption;
+                                // Lazy load images gracefully as she scrolls down the page
+                                img.loading = 'lazy';
+
+                                const caption = document.createElement('div');
+                                caption.className = 'gallery-caption';
+                                caption.textContent = imgData.caption;
+
+                                slide.appendChild(img);
+                                slide.appendChild(caption);
+                                track.appendChild(slide);
+                            });
+
+                            wrapper.appendChild(track);
+                            container.appendChild(wrapper);
+                        }
+                        else if (block.type === 'timeline_event') {
+                            if (!currentTimelineContainer) {
+                                currentTimelineContainer = document.createElement('div'); currentTimelineContainer.className = 'timeline-container';
+                                container.appendChild(currentTimelineContainer);
+                            }
+                            const item = document.createElement('div'); item.className = 'timeline-item';
+                            item.innerHTML = `
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-title">${props.title}</div>
+                                <div class="timeline-desc">${props.description}</div>
+                            `;
+                            currentTimelineContainer.appendChild(item);
+                        }
+                    });
+                    pageSection.appendChild(container);
+                });
+                app.appendChild(pageSection);
+            });
+
+            window.addEventListener('scroll', triggerScrollReveal);
+            triggerScrollReveal();
+        }
+
+        function triggerScrollReveal() {
+            document.querySelectorAll('.reveal').forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight * 0.88) el.classList.add('visible');
+            });
+        }
+
+        let tapCount = 0;
+        let lastTapTime = 0;
+        function trackTaps() {
+            const current = Date.now();
+            if (current - lastTapTime > 1500) tapCount = 0;
+            tapCount++;
+            lastTapTime = current;
+            if (tapCount === 5) {
+                document.getElementById('easter-egg').classList.add('active');
+                tapCount = 0;
+            }
+        }
+        document.getElementById('close-egg-btn').addEventListener('click', () => {
+            document.getElementById('easter-egg').classList.remove('active');
+        });
+    </script>
+</body>
+
+</html>

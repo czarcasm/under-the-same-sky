@@ -25,10 +25,6 @@
               "text": "The Heart of Leo"
             },
             {
-              "type": "dedication",
-              "text": "Dedicated to Shivanjali"
-            },
-            {
               "type": "date",
               "text": "9 August 2026"
             }
@@ -139,12 +135,20 @@
       ]
     },
     {
-      "title": "Timeline",
-      "slug": "timeline",
+      "title": "Why This Gift",
+      "slug": "why",
       "sections": [
         {
           "title": "Our Cosmos",
           "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Light that has already travelled seventy-nine years to reach us isn't going anywhere. It doesn't wilt on the fifth day, or need water, or fade in a drawer."
+            },
+            {
+              "type": "paragraph",
+              "text": "Before it was just the two of us. Now there are three hearts under the same sky — and every chapter since has been watched over by a light that was always waiting to be noticed."
+            },
             {
               "type": "timeline_event",
               "marker": "❤️",
@@ -187,6 +191,21 @@
             {
               "type": "signature",
               "text": "— Harshit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Find Our Star",
+      "slug": "findstar",
+      "sections": [
+        {
+          "title": "Begin the Journey",
+          "blocks": [
+            {
+              "type": "heading",
+              "text": "Find Our Star"
             }
           ]
         }

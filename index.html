@@ -60,7 +60,7 @@
     <!-- The dynamic hydration runtime mount element -->
     <main id="app-container"></main>
 
-    <footer>W
+    <footer>
         <h2>Under the Same Sky</h2>
         <p>No matter where life takes us, we'll always be under the same sky.</p>
     </footer>
@@ -194,7 +194,7 @@
                     if (page.slug === 'letter') {
                         const header = document.createElement('div');
                         header.className = 'center reveal';
-                        header.innerHTML = `<span class="eyebrow">The Letter</span><div class="rule d1"><div class="l"></div><div class="m">✦</div><div class="l r"></div></div>`;
+                        header.innerHTML = `<h2 id="letter-title" style="position:absolute;left:-9999px;">A letter to Shivanjali</h2><span class="eyebrow">The Letter</span><div class="rule d1"><div class="l"></div><div class="m">✦</div><div class="l r"></div></div>`;
                         pageSection.appendChild(header);
                     }
 
@@ -202,6 +202,14 @@
                         const header = document.createElement('div');
                         header.className = 'center reveal';
                         header.innerHTML = `<span class="eyebrow">The Star</span><h2 id="about-title" class="reveal d1" style="font-size:clamp(2rem,5vw,2.8rem); font-style:italic; margin-top:12px;">Regulus</h2>`;
+                        pageSection.appendChild(header);
+                    }
+
+                    if (page.slug === 'quote') {
+                        const header = document.createElement('h2');
+                        header.id = 'quote-title';
+                        header.style.cssText = 'position:absolute;left:-9999px;';
+                        header.textContent = 'Closing';
                         pageSection.appendChild(header);
                     }
 
@@ -271,7 +279,7 @@
                             const sign = document.createElement('div'); sign.className = 'letter-sign reveal d3'; sign.textContent = props.text.replace('❤️ ', '');
                             inner.appendChild(sign);
                         }
-                        else if (block.type === 'paragraph' && page.slug === 'timeline') {
+                        else if (block.type === 'paragraph' && page.slug === 'why') {
                             // Map generic text lades to standard timeline wrappers description headers
                             let lede = inner.querySelector('.why-lede');
                             if (!lede) {
@@ -324,10 +332,18 @@
                                 img.src = imgData.src;
                                 img.alt = imgData.caption;
                                 img.loading = 'lazy';
-
                                 const cap = document.createElement('div');
                                 cap.className = 'gallery-caption';
                                 cap.textContent = imgData.caption;
+
+                                img.onerror = function () {
+                                    this.remove();
+                                    cap.remove();
+                                    const ph = document.createElement('div');
+                                    ph.className = 'gallery-placeholder';
+                                    ph.textContent = imgData.caption;
+                                    figure.appendChild(ph);
+                                };
 
                                 figure.appendChild(img);
                                 figure.appendChild(cap);
@@ -349,7 +365,7 @@
                         else if (block.type === 'heading' && page.slug === 'findstar') {
                             inner.innerHTML = `<span class="eyebrow reveal">Begin the Journey</span><h2 id="findstar-title" class="reveal d1" style="font-size:clamp(1.9rem,4.6vw,2.5rem); font-style:italic; margin-top:14px;">Find Our Star</h2>`;
 
-                            const btn = document.createElement('a'); btn.className = 'cta-btn reveal d2'; btn.href = 'https://stellarium-web.org/skysource/Regulus'; btn.target = '_blank'; btn.textContent = '✦ Find Our Star';
+                            const btn = document.createElement('a'); btn.className = 'cta-btn reveal d2'; btn.href = './tonight.html'; btn.textContent = '✦ Find Our Star';
                             const note = document.createElement('p'); note.className = 'cta-note reveal d3'; note.textContent = 'A living page, worth returning to — tonight, and every night after.';
                             inner.appendChild(btn);
                             inner.appendChild(note);

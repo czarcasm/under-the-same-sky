@@ -153,79 +153,316 @@ main {
   }
 }
 
-/* --- QUIET ANIMATED LOADER --- */
+/* --- ULTIMATE DEEP SPACE STARDUST & METEOR LOADER --- */
 #loader {
-  position: fixed;
+  position: fixed; 
+  inset: 0; 
+  z-index: 1000; 
+  background: var(--ink); /* Deep space canvas */
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  overflow: hidden; /* Contains the particle engine */
+  transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              visibility 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#loader.hidden { 
+  opacity: 0; 
+  visibility: hidden; 
+  pointer-events: none; 
+}
+
+/* --- THE STARDUST PARTICLE PLANE --- */
+.stardust-field {
+  position: absolute;
+  inset: -100px; /* Bleed for motion room */
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+/* Base style for generated stardust particles (defined by JS) */
+.particle {
+  position: absolute;
+  background: var(--parchment);
+  border-radius: 50%;
+  animation: driftParticles linear infinite;
+  transform-origin: center;
+}
+
+@keyframes driftParticles {
+  from { transform: translateY(0px) rotate(0deg); }
+  to { transform: translateY(-300px) rotate(15deg); } /* Upward drift direction */
+}
+
+/* --- THE SHOOTING STAR / METEOR ENGINE --- */
+.meteor-lane {
+  position: absolute;
   inset: 0;
-  z-index: 100;
-  background: var(--ink);
+  z-index: 2;
+  pointer-events: none;
+  /* Shift orientation here to preserve the track angle path safely */
+  transform: rotate(-25deg); 
+}
+
+.meteor {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 4px 1px #ffffff, 0 0 10px 2px #ffffff;
+  left: 0; /* Align anchor index to absolute left start boundary */
+}
+
+.meteor::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0; /* Anchor tail immediately behind the leading particle cluster */
+  height: 1px;
+  width: 120px; /* Sweeping luxury trailing mark */
+  transform: translateY(-50%);
+  background: linear-gradient(to right, #ffffff 0%, transparent 100%);
+}
+
+/* Corrected Vector Motion Path Matrix */
+@keyframes shootMeteor {
+  0% { 
+    left: -150px; 
+    opacity: 0; 
+  }
+  10% { 
+    opacity: 1; 
+  }
+  60% { 
+    opacity: 1; 
+  }
+  90%, 100% { 
+    left: 120%; /* Safely clears the viewport right boundary */
+    opacity: 0; 
+  }
+}
+
+/* Clear programmatic selector conflict */
+.meteor.active { 
+  animation: shootMeteor 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards; 
+}
+
+/* --- THE CENTERING FOCUS ANCHOR (Pure Minimalism) --- */
+.loader-focus-point {
+  position: relative;
+  z-index: 5; /* Above dust */
+  text-align: center;
+}
+
+.loader-anchor-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--brass-bright);
+  margin: 0 auto 30px;
+  box-shadow: 0 0 10px 1px var(--brass-bright);
+  animation: focusGlow 3s ease-in-out infinite alternate;
+}
+
+.loader-text {
+  font-family: var(--serif-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--parchment-dim);
+  opacity: 0;
+  transform: translateY(6px);
+  animation: textReveal 1.2s ease forwards 0.4s;
+  letter-spacing: 0.5px;
+}
+
+/* --- MOTION KEYFRAMES --- */
+@keyframes focusGlow {
+  0% { transform: scale(1); filter: drop-shadow(0 0 4px var(--brass-bright)); }
+  100% { transform: scale(1.1); filter: drop-shadow(0 0 16px var(--brass-bright)); }
+}
+
+/* --- ULTIMATE DEEP SPACE METEOR LAYER WITH PRECISION RETICLE --- */
+#loader {
+  position: fixed; 
+  inset: 0; 
+  z-index: 1000; 
+  background: #06080d; /* Ultra deep ink space background */
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 1.6s cubic-bezier(0.4, 0, 0.2, 1), 
+              visibility 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#loader.hidden { 
+  opacity: 0; 
+  visibility: hidden; 
+  pointer-events: none; 
+}
+
+/* --- BACKDROP ENGINES (Stardust & Meteors Remain Intact) --- */
+.stardust-field {
+  position: absolute;
+  inset: -100px;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.5;
+}
+.particle {
+  position: absolute;
+  background: var(--parchment);
+  border-radius: 50%;
+  animation: driftParticles linear infinite;
+}
+@keyframes driftParticles {
+  from { transform: translateY(0px); }
+  to { transform: translateY(-250px); }
+}
+
+.meteor-lane {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  transform: rotate(-22deg);
+}
+.meteor {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 6px 2px #fff, 0 0 14px 4px rgba(255,255,255,0.4);
+  left: 0;
+}
+.meteor::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 1px;
+  width: 160px; /* Made the trail longer and brighter */
+  transform: translateY(-50%);
+  background: linear-gradient(to right, rgba(255,255,255,0.9) 0%, transparent 100%);
+}
+@keyframes shootMeteor {
+  0% { left: -160px; opacity: 0; }
+  8% { opacity: 1; }
+  50% { opacity: 1; }
+  85%, 100% { left: 115%; opacity: 0; }
+}
+.meteor.active { 
+  animation: shootMeteor 1.1s cubic-bezier(0.1, 0.85, 0.25, 1) forwards; 
+}
+
+/* --- THE NEW PREMIUM HIGH-FIDELITY RETICLE LOADER --- */
+.reticle-container {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  margin-bottom: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition:
-    opacity 1s ease,
-    visibility 1s ease;
+  z-index: 5;
 }
-#loader.hidden {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
-}
-.loader-inner {
-  text-align: center;
-}
-.loader-mark {
-  position: relative;
-  width: 64px;
-  height: 64px;
-  margin: 0 auto 30px;
-}
-.loader-ring {
+
+/* Outer Astrological Ring with Compass Ticks */
+.reticle-ring-outer {
   position: absolute;
   inset: 0;
-  border: 1px solid var(--line);
+  border: 1px solid rgba(184, 147, 92, 0.22);
+  border-radius: 50%;
+  animation: spin 50s linear infinite;
+}
+.reticle-ring-outer::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border: 1px dashed rgba(242, 236, 221, 0.05);
   border-radius: 50%;
 }
-.loader-ring.r2 {
-  inset: 11px;
-  border-color: rgba(184, 147, 92, 0.16);
-}
-.loader-dot {
+
+/* Intermediate Rotating Telemetry Ring */
+.reticle-ring-mid {
   position: absolute;
-  top: 50%;
+  inset: 30px;
+  border: 1px dashed rgba(184, 147, 92, 0.14);
+  border-radius: 50%;
+  animation: spin 25s linear infinite reverse;
+}
+
+/* Tight Core Focus Boundary Ring */
+.reticle-ring-inner {
+  position: absolute;
+  inset: 75px;
+  border: 0.5px solid rgba(242, 236, 221, 0.12);
+  border-radius: 50%;
+}
+
+/* Precision Observatory Lens Crosshairs */
+.reticle-axis-y {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
   left: 50%;
-  width: 7px;
-  height: 7px;
-  margin: -3.5px 0 0 -3.5px;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(184, 147, 92, 0.3) 30%, rgba(184, 147, 92, 0.3) 70%, transparent);
+}
+.reticle-axis-x {
+  position: absolute;
+  left: 10px;
+  right: 10px;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(184, 147, 92, 0.3) 30%, rgba(184, 147, 92, 0.3) 70%, transparent);
+}
+
+/* Core Star Node Target (Breathing Radiance Animation) */
+.reticle-core-node {
+  width: 12px;
+  height: 12px;
   background: var(--brass-bright);
   border-radius: 50%;
-  animation: loader-pulse 2.6s ease-in-out infinite;
+  z-index: 10;
+  position: relative;
+  box-shadow: 0 0 14px 2px var(--brass-bright);
+  animation: reticlePulse 2.4s ease-in-out infinite alternate;
 }
-@keyframes loader-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 6px 2px rgba(227, 189, 130, 0.6);
-  }
-  50% {
-    box-shadow: 0 0 18px 6px rgba(227, 189, 130, 0.95);
-  }
+
+@keyframes reticlePulse {
+  0% { transform: scale(0.9); filter: drop-shadow(0 0 2px var(--brass-bright)); }
+  100% { transform: scale(1.25); filter: drop-shadow(0 0 14px var(--brass-bright)) drop-shadow(0 0 22px rgba(227,189,130,0.5)); }
 }
-.loader-line {
+
+.loader-text {
   font-family: var(--serif-display);
   font-style: italic;
-  font-size: 1.35rem;
+  font-size: 1.15rem;
   color: var(--parchment-dim);
+  text-align: center;
+  margin-top: 10px;
+  letter-spacing: 0.8px;
+  position: relative;
+  z-index: 99; 
+  
   opacity: 0;
-  animation: fade-in 1.4s ease forwards 0.5s;
+  transform: translateY(6px);
+  animation: textReveal 1.2s ease forwards 0.4s;
 }
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(6px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+@keyframes textReveal {
+  to { 
+    opacity: 0.8; 
+    transform: translateY(0); 
   }
 }
 

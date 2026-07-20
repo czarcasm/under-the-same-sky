@@ -1,0 +1,13 @@
+under-the-same-sky/
+├── index.html               # Clean, root layout shell & dynamic module hydrator
+├── test.html                # In-browser micro-testing suite runner
+└── src/
+    ├── css/
+    │   └── style.css        # Premium, icon-free typography & interaction layout styles
+    ├── data/
+    │   └── story.json       # Pure structural memory schema (Shivanjali's surprise content)
+    └── model/
+        ├── Story.js         # Root aggregate coordinator model class
+        ├── Page.js          # Explicit navigation layout view model class
+        ├── Section.js       # Structural section container model class
+        └── ContentBlock.js  # Atomic properties data mapper class

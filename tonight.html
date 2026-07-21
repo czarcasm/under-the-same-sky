@@ -19,7 +19,7 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="./src/css/style.css">
-    
+
 </head>
 
 <body>
@@ -69,8 +69,8 @@
         <h2 class="ch-title">Tonight</h2>
         <div class="ch-sub">
             <p>Tonight, I'd like to show you something.</p>
-            <p>Not something expensive.</p>
-            <p>Not something perfect.</p>
+            <p>Not something fleeting.</p>
+            <p>Not something made to fade.</p>
             <p>Just something that will always be there.</p>
         </div>
         <button class="journey-btn" onclick="nextChapter('ch-4')">Find my star</button>
@@ -191,7 +191,7 @@
             btn.style.pointerEvents = 'none';
 
             // 1. Illuminate Leo slow-glow
-            map.classList.add('illuminated');
+           if (map) map.classList.add('illuminated');
 
             // 2. Transition to Chapter 5 after constellation glows
             setTimeout(() => {

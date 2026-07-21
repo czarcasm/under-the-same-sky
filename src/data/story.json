@@ -138,13 +138,13 @@
             },
             {
               "type": "timeline_event",
-              "marker": "✨",
+              "marker": "♌",
               "title": "1991 · The Original Light",
               "description": "35 orbits ago, Shivanjali's journey began - bringing warmth, grace, and effortless brilliance into the world."
             },
             {
               "type": "timeline_event",
-              "marker": "👑",
+              "marker": "🌿",
               "title": "Her Own Trail",
               "description": "Building her own wisdom, her distinct laughter, her fierce soul, and the quiet strength she carries into every room."
             },
@@ -156,13 +156,13 @@
             },
             {
               "type": "timeline_event",
-              "marker": "👶",
+              "marker": "🌙",
               "title": "Our Little Light",
               "description": "Watching her step into motherhood with boundless love, filling our home with warmth and raising our little light."
             },
             {
               "type": "timeline_event",
-              "marker": "⭐",
+              "marker": "💫",
               "title": "35th Orbit · Regulus",
               "description": "35 revolutions around the sun. A star in the heart of Leo dedicated to an extraordinary woman forever."
             }
@@ -179,32 +179,32 @@
           "blocks": [
             {
               "type": "fact",
-              "label": "⭐ Designated Name",
+              "label": "Designated Name",
               "value": "Regulus (α Leonis)"
             },
             {
               "type": "fact",
-              "label": "♌ Constellation",
+              "label": "Constellation",
               "value": "Leo the Lion"
             },
             {
               "type": "fact",
-              "label": "✨ Meaning",
+              "label": "Meaning",
               "value": "Little King / Lion's Heart"
             },
             {
               "type": "fact",
-              "label": "🌍 Distance",
+              "label": "Distance",
               "value": "79.3 Light Years"
             },
             {
               "type": "fact",
-              "label": "🔭 Apparent Magnitude",
+              "label": "Apparent Magnitude",
               "value": "+1.35 (Naked Eye)"
             },
             {
               "type": "fact",
-              "label": "📍 Celestial Coordinates",
+              "label": "Celestial Coordinates",
               "value": "RA 10h 08m / Dec +11° 58′"
             }
           ]

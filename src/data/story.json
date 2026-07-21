@@ -45,31 +45,126 @@
             },
             {
               "type": "paragraph",
-              "text": "35 years ago, a light entered this world-one that was destined to bring warmth, grace, and an unforgettable kind of brilliance to everyone fortunate enough to cross its path."
+              "text": "Thirty-five years ago, a light entered this world - one destined to bring warmth, grace, and an unforgettable kind of brilliance to everyone fortunate enough to cross its path."
             },
             {
               "type": "paragraph",
-              "text": "Long before you became my partner or Nitvika’s mother, you were already your own fierce, beautiful soul. Your laughter, your wisdom, and the quiet strength you carry into every room have always set you apart."
+              "text": "Long before we ever met, your story was quietly unfolding beneath the very same sky. Mine was too. Neither of us knew it then, but across all those ordinary years, our paths were gently finding their way toward each other."
             },
             {
               "type": "paragraph",
-              "text": "Some birthday gifts fade with time. Flowers wilt, chocolates disappear, and everyday tokens get tucked away in drawers. But on your 35th revolution around the sun, I wanted to give you something that would always be waiting whenever you look up."
+              "text": "When they finally crossed, life became richer than either of us could have imagined. The dreams we once carried separately slowly became shared ones - and before we knew it, those dreams had tiny hands, an infectious laugh, and a name we will cherish forever: Nitvika."
             },
             {
               "type": "paragraph",
-              "text": "So today, I dedicate Regulus-the bright, beating heart of Leo-to you. A light that has travelled seventy-nine years across space just to reach us, mirroring the steady, enduring warmth you bring into our lives every single day."
+              "text": "Looking back, it is hard to imagine a time when our three lives weren't always meant to become one."
             },
             {
               "type": "paragraph",
-              "text": "Whenever life feels busy or overwhelming, just look up at the night sky. Let that shining light remind you of the extraordinary woman you are, how deeply you are cherished, and how my heart will always find its way back to yours."
+              "text": "When I began thinking about your 35th birthday, I kept coming back to one simple thought: some gifts are opened once, but others become more meaningful every time you return to them. This is one of those gifts."
             },
             {
               "type": "paragraph",
-              "text": "Happy 35th Birthday, my love."
+              "text": "So today, I dedicate Regulus - the beating heart of Leo - to you."
+            },
+            {
+              "type": "paragraph",
+              "text": "Its light has travelled nearly eighty years across the cosmos just to reach us tonight. It was journeying through space before we met, before we built our life together, and before little Nitvika filled our home with laughter. Yet somehow, it feels as though it was always waiting for this exact moment to become part of our story."
+            },
+            {
+              "type": "paragraph",
+              "text": "Whenever life feels busy...\nWhenever it feels overwhelming...\nWhenever we're side by side...\nOr even when miles apart..."
+            },
+            {
+              "type": "paragraph",
+              "text": "I hope you'll pause and look up."
+            },
+            {
+              "type": "paragraph",
+              "text": "Somewhere in the heart of Leo, a light is shining that will always carry your name. And every time you find it, I hope it reminds you of what I will never stop feeling:"
+            },
+            {
+              "type": "paragraph",
+              "text": "You have made my world brighter in ways you may never fully realize. Thank you for taking every ordinary day and quietly making it extraordinary. No matter where life takes us, you will always be the heart of mine."
+            },
+            {
+              "type": "paragraph",
+              "text": "Happy 35th Birthday, my love. May this little corner of the night sky always bring you back to this moment - and remind you just how deeply you are cherished."
             },
             {
               "type": "signature",
-              "text": "❤️ Harshit"
+              "text": "Always under the same sky,\n❤️ Harshit"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Gallery",
+      "slug": "gallery",
+      "sections": [
+        {
+          "title": "Our Moments",
+          "blocks": [
+            {
+              "type": "gallery",
+              "images": [
+                { "src": "images/wedding.jpg", "caption": "Wedding" },
+                { "src": "images/trip1.jpg", "caption": "Trip Moment" },
+                { "src": "images/baby.jpg", "caption": "Nitvika" },
+                { "src": "images/funny.jpg", "caption": "Funny Moments" },
+                { "src": "images/trip2.jpg", "caption": "Special Travel" },
+                { "src": "images/us.jpg", "caption": "Together" }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Why This Gift",
+      "slug": "why",
+      "sections": [
+        {
+          "title": "Our Cosmos",
+          "blocks": [
+            {
+              "type": "paragraph",
+              "text": "Light that has already travelled seventy-nine years to reach us isn't going anywhere. It doesn't wilt, or fade, or lose its shimmer with time."
+            },
+            {
+              "type": "paragraph",
+              "text": "35 years of your story, and every chapter since has been watched over by a sky that was always waiting to celebrate you."
+            },
+            {
+              "type": "timeline_event",
+              "marker": "✨",
+              "title": "1991 · The Original Light",
+              "description": "35 orbits ago, Shivanjali's journey began - bringing warmth, grace, and effortless brilliance into the world."
+            },
+            {
+              "type": "timeline_event",
+              "marker": "👑",
+              "title": "Her Own Trail",
+              "description": "Building her own wisdom, her distinct laughter, her fierce soul, and the quiet strength she carries into every room."
+            },
+            {
+              "type": "timeline_event",
+              "marker": "💍",
+              "title": "Two Orbits Align",
+              "description": "When two separate constellations crossed paths and linked forever - making my world infinitely brighter."
+            },
+            {
+              "type": "timeline_event",
+              "marker": "👶",
+              "title": "Our Little Light",
+              "description": "Watching her step into motherhood with boundless love, filling our home with warmth and raising our little light."
+            },
+            {
+              "type": "timeline_event",
+              "marker": "⭐",
+              "title": "35th Orbit · Regulus",
+              "description": "35 revolutions around the sun. A star in the heart of Leo dedicated to an extraordinary woman forever."
             }
           ]
         }
@@ -117,77 +212,6 @@
       ]
     },
     {
-      "title": "Gallery",
-      "slug": "gallery",
-      "sections": [
-        {
-          "title": "Our Moments",
-          "blocks": [
-            {
-              "type": "gallery",
-              "images": [
-                { "src": "images/wedding.jpg", "caption": "Wedding" },
-                { "src": "images/trip1.jpg", "caption": "Trip Moment" },
-                { "src": "images/baby.jpg", "caption": "Nitvika" },
-                { "src": "images/funny.jpg", "caption": "Funny Moments" },
-                { "src": "images/trip2.jpg", "caption": "Special Travel" },
-                { "src": "images/us.jpg", "caption": "Together" }
-              ]
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "title": "Why This Gift",
-      "slug": "why",
-      "sections": [
-        {
-          "title": "Our Cosmos",
-          "blocks": [
-            {
-              "type": "paragraph",
-              "text": "Light that has already travelled seventy-nine years to reach us isn't going anywhere. It doesn't wilt, or fade, or lose its shimmer with time."
-            },
-            {
-              "type": "paragraph",
-              "text": "35 years of your story, and every chapter since has been watched over by a sky that was always waiting to celebrate you."
-            },
-            {
-              "type": "timeline_event",
-              "marker": "✨",
-              "title": "1991 · The Original Light",
-              "description": "35 orbits ago, Shivanjali's journey began-bringing warmth, grace, and effortless brilliance into the world."
-            },
-            {
-              "type": "timeline_event",
-              "marker": "👑",
-              "title": "Her Own Trail",
-              "description": "Building her own wisdom, her distinct laughter, her fierce soul, and the quiet strength she carries into every room."
-            },
-            {
-              "type": "timeline_event",
-              "marker": "💍",
-              "title": "Two Orbits Align",
-              "description": "When two separate constellations crossed paths and linked forever-making my world infinitely brighter."
-            },
-            {
-              "type": "timeline_event",
-              "marker": "👶",
-              "title": "Our Little Light",
-              "description": "Watching her step into motherhood with boundless love, filling our home with warmth and raising our little light."
-            },
-            {
-              "type": "timeline_event",
-              "marker": "⭐",
-              "title": "35th Orbit · Regulus",
-              "description": "35 revolutions around the sun. A star in the heart of Leo dedicated to an extraordinary woman forever."
-            }
-          ]
-        }
-      ]
-    },
-    {
       "title": "Final Quote",
       "slug": "quote",
       "sections": [
@@ -196,7 +220,7 @@
           "blocks": [
             {
               "type": "quote",
-              "text": "Whenever life feels overwhelming... look up. Somewhere in the heart of Leo, there is a light I've chosen to remind me of you."
+              "text": "Years from now, I hope you still look up, find this star, and remember that somewhere beneath the very same sky... someone loves you beyond words."
             },
             {
               "type": "signature",

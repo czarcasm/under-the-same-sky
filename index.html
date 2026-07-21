@@ -378,12 +378,12 @@
                         }
                         else if (block.type === 'quote') {
                             const q = document.createElement('p'); q.className = 'finale-quote reveal';
-                            q.innerHTML = props.text.replace('look up.', '<span class="grace">look up.</span>');
+                            q.innerHTML = props.text.replace('look up', '<span class="grace">look up</span>');
                             inner.appendChild(q);
                         }
                         else if (block.type === 'signature' && page.slug === 'quote') {
                             const sign = document.createElement('div'); sign.className = 'finale-sign reveal d1'; sign.textContent = props.text.replace('- ', '');
-                            const bridge = document.createElement('p'); bridge.className = 'bridge-line reveal d2'; bridge.textContent = 'This letter is read once. The sky is there whenever you need it.';
+                            const bridge = document.createElement('p'); bridge.className = 'bridge-line reveal d2'; bridge.textContent = 'Some gifts are meant to last for a moment. I wanted yours to last for a lifetime.';
                             inner.appendChild(sign);
                             inner.appendChild(bridge);
                         }

@@ -28,14 +28,14 @@
     <div id="loader" role="status" aria-live="polite">
         <!-- Background Particle Field Plane -->
         <div class="stardust-field" id="loaderField"></div>
-        
+
         <!-- Background Shooting Star Traversal Matrix -->
         <div class="meteor-lane" id="meteorLane">
             <div class="meteor m1"></div>
             <div class="meteor m2"></div>
             <div class="meteor m3"></div>
         </div>
-        
+
         <!-- Centered Fine-Art Astronomical Telemetry Instrument -->
         <div class="reticle-container" aria-hidden="true">
             <div class="reticle-ring-outer"></div>
@@ -45,7 +45,7 @@
             <div class="reticle-axis-x"></div>
             <div class="reticle-core-node"></div>
         </div>
-        
+
         <p class="loader-text">A letter written in starlight…</p>
     </div>
 
@@ -225,17 +225,35 @@
                         frame.className = 'arrival-frame';
                         frame.innerHTML = `
                             <div class="const-wrap reveal">
-                                <svg id="constSvg" viewBox="0 0 300 220" aria-hidden="true">
-                                  <line class="const-line" x1="70" y1="30" x2="110" y2="80"/>
-                                  <line class="const-line" x1="110" y1="80" x2="100" y2="140"/>
-                                  <line class="const-line" x1="100" y1="140" x2="160" y2="165"/>
-                                  <line class="const-line" x1="100" y1="140" x2="60" y2="185"/>
-                                  <line class="const-line" x1="110" y1="80" x2="200" y2="60"/>
-                                  <circle class="const-star" cx="70" cy="30" r="2.4"/>
-                                  <circle class="const-star" cx="160" cy="165" r="2.4"/>
-                                  <circle class="const-star" cx="60" cy="185" r="2"/>
-                                  <circle class="const-star" cx="200" cy="60" r="2.6"/>
-                                  <circle id="regulusDot" cx="110" cy="80" r="5"/>
+                                <svg id="constSvg" viewBox="80 30 480 210" aria-hidden="true" style="transform: scale(-1, 1);">
+                                <!-- Sickle / Head & Forequarters (Rasalas, Adhafera, Algieba, Eta, Regulus) -->
+                                <line class="const-line" x1="160" y1="65" x2="195" y2="48"/>
+                                <line class="const-line" x1="195" y1="48" x2="230" y2="62"/>
+                                <line class="const-line" x1="230" y1="62" x2="232" y2="108"/>
+                                <line class="const-line" x1="232" y1="108" x2="200" y2="152"/>
+                                <line class="const-line" x1="200" y1="152" x2="182" y2="205"/>
+
+                                <!-- Body & Hindquarters Triangle (Algieba -> Zosma -> Chertan -> Denebola) -->
+                                <line class="const-line" x1="232" y1="108" x2="385" y2="115"/>
+                                <line class="const-line" x1="385" y1="115" x2="395" y2="175"/>
+                                <line class="const-line" x1="395" y1="175" x2="200" y2="152"/>
+                                <line class="const-line" x1="385" y1="115" x2="520" y2="150"/>
+                                <line class="const-line" x1="395" y1="175" x2="520" y2="150"/>
+
+                                <!-- Stars in the Sickle -->
+                                <circle class="const-star" cx="160" cy="65" r="2.6"/>
+                                <circle class="const-star" cx="195" cy="48" r="2.8"/>
+                                <circle class="const-star" cx="230" cy="62" r="3.2"/>
+                                <circle class="const-star" cx="232" cy="108" r="3.0"/>
+                                <circle class="const-star" cx="200" cy="152" r="2.8"/>
+
+                                <!-- Stars in Hindquarters -->
+                                <circle class="const-star" cx="385" cy="115" r="3.0"/>
+                                <circle class="const-star" cx="395" cy="175" r="2.8"/>
+                                <circle class="const-star" cx="520" cy="150" r="3.5"/>
+
+                                <!-- Regulus (Alpha Star - Dedicated Focus Dot) -->
+                                <circle id="regulusDot" cx="182" cy="205" r="6"/>
                                 </svg>
                             </div>
                         `;
@@ -297,6 +315,9 @@
                             if (!timelineWrap) {
                                 timelineWrap = document.createElement('div');
                                 timelineWrap.className = 'tl-wrap reveal d3';
+                                const connector = document.createElement('div');
+                                connector.className = 'tl-line';
+                                timelineWrap.appendChild(connector);
                                 inner.appendChild(timelineWrap);
                             }
                             const item = document.createElement('div');

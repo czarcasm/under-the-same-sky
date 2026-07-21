@@ -537,9 +537,9 @@ section {
 
 .const-wrap {
   position: relative;
-  width: min(60vw, 300px);
-  height: min(60vw, 220px);
-  margin: 0 auto 34px;
+  width: min(85vw, 480px);
+  height: min(38.6vw, 218px);
+  margin: 0 auto 24px;
 }
 #constSvg {
   width: 100%;
@@ -689,7 +689,7 @@ h1.name {
   width: 100%;
   position: relative;
 }
-.tl-wrap::before {
+.tl-line {
   content: "";
   position: absolute;
   left: 20px;
@@ -698,6 +698,7 @@ h1.name {
   width: 1px;
   background: linear-gradient(var(--brass), var(--brass-bright), var(--brass));
   opacity: 0.45;
+  z-index: 0;
 }
 .tl-item {
   position: relative;

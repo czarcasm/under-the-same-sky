@@ -5,278 +5,335 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#0a0d13" />
-    <meta name="description" content="Find Regulus tonight, wherever you are." />
-    <title>Find Our Star - Regulus</title>
+    <meta name="description" content="A journey under the same sky, for Shivanjali." />
+    <title>Under the Same Sky - Tonight</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=JetBrains+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
 
-    <!-- Pulling in the external shared design rules -->
     <link rel="stylesheet" href="./src/css/style.css">
+
+    <style>
+        /* Custom Chapter Navigation & Transition Controls */
+        body {
+            overflow: hidden;
+            /* Lock scroll during chapter presentation */
+        }
+
+        .chapter-stage {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 30px;
+            z-index: 10;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 1.2s ease, transform 1.2s ease;
+            transform: translateY(15px);
+        }
+
+        .chapter-stage.active {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .ch-title {
+            font-family: var(--serif-display);
+            font-style: italic;
+            font-size: clamp(2.4rem, 6vw, 4rem);
+            color: var(--parchment);
+            margin-bottom: 12px;
+        }
+
+        .ch-sub {
+            font-family: var(--serif-body);
+            font-style: italic;
+            font-size: clamp(1.2rem, 2.5vw, 1.5rem);
+            color: var(--parchment-dim);
+            line-height: 1.8;
+            max-width: 580px;
+            margin: 0 auto 30px;
+        }
+
+        .ch-sub p {
+            margin-bottom: 0.8em;
+        }
+
+        .journey-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 16px 42px;
+            border: 1px solid var(--brass);
+            color: var(--brass-bright);
+            background: rgba(10, 13, 19, 0.6);
+            font-family: var(--serif-display);
+            font-style: italic;
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border-radius: 2px;
+        }
+
+        .journey-btn:hover {
+            background: var(--brass);
+            color: var(--ink);
+            box-shadow: 0 0 20px rgba(227, 189, 130, 0.4);
+        }
+
+        /* Leo Constellation Visualizer Canvas */
+        .leo-canvas-wrap {
+            position: relative;
+            width: min(85vw, 500px);
+            height: min(45vw, 260px);
+            margin: 20px auto 30px;
+            opacity: 0.2;
+            transition: opacity 2s ease, filter 2s ease;
+            filter: drop-shadow(0 0 2px rgba(227, 189, 130, 0.2));
+        }
+
+        .leo-canvas-wrap.illuminated {
+            opacity: 1;
+            filter: drop-shadow(0 0 16px rgba(227, 189, 130, 0.6));
+        }
+
+        .reveal-name {
+            font-family: var(--serif-display);
+            font-style: italic;
+            font-size: clamp(3.5rem, 10vw, 6rem);
+            color: var(--brass-bright);
+            letter-spacing: 0.02em;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 2.5s ease, transform 2.5s ease;
+            text-shadow: 0 0 25px rgba(227, 189, 130, 0.6);
+        }
+
+        .reveal-name.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Nav back home pill */
+        .home-pill {
+            position: fixed;
+            top: 26px;
+            left: 26px;
+            z-index: 100;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--parchment-faint);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .home-pill:hover {
+            color: var(--brass-bright);
+        }
+    </style>
 </head>
 
 <body>
 
-    <a class="skip-link" href="#skymap">Skip to sky map</a>
+    <a class="home-pill" href="./index.html">← Return Home</a>
     <canvas id="starfield" aria-hidden="true"></canvas>
 
-    <!-- Dynamic Terminal Analysis Screen Overlay -->
-    <div id="loader" role="status" aria-live="polite">
-        <div class="ledger" id="ledger">
-            <div class="ln" data-text="> LOCATING TARGET…"></div>
-            <div class="ln" data-text="> RA 10h 08m 22.3s    DEC +11°58'01&quot;"></div>
-            <div class="ln" data-text="> CONSTELLATION: LEO"></div>
-            <div class="ln" data-text="> STAR FOUND - REGULUS"></div>
-            <div class="found" id="ledgerFound">When the night is right, the sky will guide you.</div>
+    <!-- LANDING PAGE -->
+    <div class="chapter-stage active" id="ch-landing">
+        <h1 class="ch-title">Under the Same Sky</h1>
+        <div class="ch-sub">
+            <p>A small journey.</p>
+            <p>Made just for you.</p>
+        </div>
+        <button class="journey-btn" onclick="nextChapter('ch-1')">Begin</button>
+    </div>
+
+    <!-- CHAPTER 1: THE SKY -->
+    <div class="chapter-stage" id="ch-1">
+        <span class="eyebrow">Chapter I</span>
+        <h2 class="ch-title">The Sky</h2>
+        <div class="ch-sub">
+            <p>Every night, billions of stars shine above us.</p>
+            <p>Most people look at them for only a moment.</p>
+            <p>But sometimes...</p>
+            <p style="color: var(--brass-bright); font-size: 1.35rem;">one star can mean everything.</p>
+        </div>
+        <button class="journey-btn" onclick="nextChapter('ch-2')">Continue</button>
+    </div>
+
+    <!-- CHAPTER 2: DISTANCE -->
+    <div class="chapter-stage" id="ch-2">
+        <span class="eyebrow">Chapter II</span>
+        <h2 class="ch-title">Distance</h2>
+        <div class="ch-sub">
+            <p>No matter where we are...</p>
+            <p>whether we're sitting beside each other,</p>
+            <p>or miles apart...</p>
+            <p style="color: var(--brass-bright); font-size: 1.35rem;">we always share the same sky.</p>
+        </div>
+        <button class="journey-btn" onclick="nextChapter('ch-3')">Continue</button>
+    </div>
+
+    <!-- CHAPTER 3: TONIGHT -->
+    <div class="chapter-stage" id="ch-3">
+        <span class="eyebrow">Chapter III</span>
+        <h2 class="ch-title">Tonight</h2>
+        <div class="ch-sub">
+            <p>Tonight, I'd like to show you something.</p>
+            <p>Not something expensive.</p>
+            <p>Not something perfect.</p>
+            <p>Just something that will always be there.</p>
+        </div>
+        <button class="journey-btn" onclick="nextChapter('ch-4')">Find my star</button>
+    </div>
+
+    <!-- CHAPTER 4: LEO -->
+    <div class="chapter-stage" id="ch-4">
+        <span class="eyebrow">Chapter IV</span>
+        <h2 class="ch-title">Leo</h2>
+        <div class="ch-sub">
+            <p>Look towards Leo.</p>
+            <p>Hidden among thousands of stars...</p>
+            <p>is one that now carries your name.</p>
+        </div>
+
+        <!-- Leo Constellation Map -->
+        <div class="leo-canvas-wrap" id="leoMap">
+            <svg viewBox="80 30 480 210" style="width:100%; height:100%; transform: scale(-1, 1);">
+                <line class="const-line" x1="160" y1="65" x2="195" y2="48" />
+                <line class="const-line" x1="195" y1="48" x2="230" y2="62" />
+                <line class="const-line" x1="230" y1="62" x2="232" y2="108" />
+                <line class="const-line" x1="232" y1="108" x2="200" y2="152" />
+                <line class="const-line" x1="200" y1="152" x2="182" y2="205" />
+                <line class="const-line" x1="232" y1="108" x2="385" y2="115" />
+                <line class="const-line" x1="385" y1="115" x2="395" y2="175" />
+                <line class="const-line" x1="395" y1="175" x2="200" y2="152" />
+                <line class="const-line" x1="385" y1="115" x2="520" y2="150" />
+                <line class="const-line" x1="395" y1="175" x2="520" y2="150" />
+
+                <circle class="const-star" cx="160" cy="65" r="2.6" />
+                <circle class="const-star" cx="195" cy="48" r="2.8" />
+                <circle class="const-star" cx="230" cy="62" r="3.2" />
+                <circle class="const-star" cx="232" cy="108" r="3.0" />
+                <circle class="const-star" cx="200" cy="152" r="2.8" />
+                <circle class="const-star" cx="385" cy="115" r="3.0" />
+                <circle class="const-star" cx="395" cy="175" r="2.8" />
+                <circle class="const-star" cx="520" cy="150" r="3.5" />
+
+                <!-- Regulus Anchor Star -->
+                <circle id="regulusDot" cx="182" cy="205" r="6.5" />
+            </svg>
+        </div>
+        <button class="journey-btn" id="illuminateBtn" onclick="revealSequence()">Look Closer</button>
+    </div>
+
+    <!-- CHAPTER 5: THE REVEAL -->
+    <div class="chapter-stage" id="ch-5">
+        <div class="ch-sub">
+            <p>There it is.</p>
+            <p>A tiny point of light...</p>
+            <p style="color: var(--brass-bright);">carrying a piece of my heart.</p>
+        </div>
+
+        <!-- Final Name Reveal -->
+        <h1 class="reveal-name" id="finalName">Shivanjali</h1>
+
+        <!-- Direct Action Link to Interactive Sky Map -->
+        <div id="skyviewWrap" style="opacity: 0; transition: opacity 2s ease; margin-top: 40px;">
+            <a class="journey-btn" href="https://stellarium-web.org/skysource/Regulus?fov=1.0" target="_blank"
+                rel="noopener noreferrer" style="text-decoration: none;">
+                ✦ Find Regulus Tonight
+            </a>
         </div>
     </div>
 
-    <main>
-
-        <section id="hero" aria-labelledby="hero-title">
-            <div class="section-inner">
-                <div class="star-mark reveal" aria-hidden="true">
-                    <div class="star-ring"></div>
-                    <div class="star-ring r2"></div>
-                    <div class="star-dot"></div>
-                </div>
-                <span class="eyebrow reveal d1">Tonight</span>
-                <h1 id="hero-title" class="title reveal d2">Find Our Star</h1>
-                <p class="hero-sub reveal d2">When the night is right, the sky will guide you to the heart of Leo.</p>
-                <p class="eyebrow today reveal d3" id="todayLine"
-                    style="color:var(--parchment-faint); letter-spacing:0.18em;"></p>
-            </div>
-        </section>
-
-        <section id="why-tonight" aria-labelledby="why-title">
-            <div class="section-inner center">
-                <span class="eyebrow reveal">Why Tonight Matters</span>
-                <h2 id="why-title" class="sr-only" style="position:absolute;left:-9999px;">Why tonight matters</h2>
-                <p class="why-body reveal d1">
-                    The letter was written once. But a star doesn't ask to be read only on a birthday -
-                    it just waits, quietly, for the next time you happen to look up.
-                    Tonight can be any night. That's the whole idea.
-                </p>
-            </div>
-        </section>
-
-        <section id="skymap" aria-labelledby="skymap-title">
-            <div class="section-inner">
-                <span class="eyebrow reveal">Live Sky Map</span>
-                <h2 id="skymap-title" class="reveal d1"
-                    style="font-style:italic; font-size:clamp(1.7rem,4vw,2.2rem); margin-top:10px;">See it where you
-                    stand</h2>
-
-                <a class="cta-btn reveal d2" href="https://stellarium-web.org/skysource/Regulus" target="_blank"
-                    rel="noopener">
-                    ⭐ Find Regulus Tonight
-                </a>
-                <p class="cta-note reveal d3">Opens an interactive sky map centered on Regulus, wherever you are.</p>
-            </div>
-        </section>
-
-        <section id="facts" aria-labelledby="facts-title">
-            <div class="section-inner center">
-                <span class="eyebrow reveal">Quick Astronomy</span>
-                <h2 id="facts-title" class="sr-only" style="position:absolute;left:-9999px;">Quick astronomy facts</h2>
-                <div class="fact-grid reveal d1">
-                    <div class="fcell">
-                        <div class="fl">Constellation</div>
-                        <div class="fv">Leo</div>
-                    </div>
-                    <div class="fcell">
-                        <div class="fl">Magnitude</div>
-                        <div class="fv">1.35</div>
-                    </div>
-                    <div class="fcell">
-                        <div class="fl">Distance</div>
-                        <div class="fv">79 ly</div>
-                    </div>
-                    <div class="fcell">
-                        <div class="fl">Best Seen</div>
-                        <div class="fv">Spring Evenings</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="guidance" aria-labelledby="guide-title">
-            <div class="section-inner center">
-                <span class="eyebrow reveal">Observation Protocol</span>
-                <h2 id="guide-title" class="reveal d1"
-                    style="font-size:clamp(1.8rem, 4vw, 2.3rem); font-style:italic; margin-top:10px; margin-bottom: 30px;">
-                    How to Find Regulus Tonight</h2>
-
-                <div class="guide-list reveal d2">
-                    <div class="guide-item">
-                        <span class="gi-num">01</span>
-                        <p class="gi-text"><strong>Locate the Big Dipper:</strong> Look toward the northern sky and
-                            trace the outer edge of the Dipper's bowl (Megrez to Phecda). Extend that imaginary line
-                            straight down across the sky.</p>
-                    </div>
-
-                    <div class="guide-item">
-                        <span class="gi-num">02</span>
-                        <p class="gi-text"><strong>Spot the Celestial Sickle:</strong> You will land on a striking group
-                            of stars that looks like a reversed question mark. This forms the mane and head of Leo the
-                            Lion.</p>
-                    </div>
-
-                    <div class="guide-item">
-                        <span class="gi-num">03</span>
-                        <p class="gi-text"><strong>Focus on the Base:</strong> Right at the bottom dot of that reversed
-                            question mark sits <strong>Regulus</strong>-a brilliant blue-white star shining 79
-                            light-years away, dedicated entirely to you.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="return">
-            <div class="section-inner">
-                <a class="back-link reveal" href="index.html">← Read the letter again</a>
-            </div>
-        </section>
-
-    </main>
-
-    <footer>
-        <h2>Under the Same Sky</h2>
-        <p>No matter where life takes us, we'll always be under the same sky.</p>
-    </footer>
-
     <script>
-        const Starfield = (function () {
+        // Starfield Canvas Background Engine
+        (function () {
             const canvas = document.getElementById('starfield');
             const ctx = canvas.getContext('2d');
-            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            let stars = [], rafId = null, running = false;
+            let stars = [];
 
             function build() {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;
-                const count = Math.min(360, Math.floor((canvas.width * canvas.height) / 10000));
-                stars = Array.from({ length: count }, () => ({
+                stars = Array.from({ length: 280 }, () => ({
                     x: Math.random() * canvas.width,
                     y: Math.random() * canvas.height,
-                    r: Math.random() * 1.3 + 0.2,
-                    base: Math.random() * 0.5 + 0.15,
-                    speed: Math.random() * 0.015 + 0.004,
-                    phase: Math.random() * Math.PI * 2,
-                    layer: Math.random() < 0.75 ? 1 : 1.8
+                    r: Math.random() * 1.2 + 0.2,
+                    base: Math.random() * 0.5 + 0.2,
+                    speed: Math.random() * 0.015 + 0.005,
+                    phase: Math.random() * Math.PI * 2
                 }));
             }
 
             function frame(t) {
-                if (!running) return;
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
                 for (const s of stars) {
-                    const tw = reduceMotion ? s.base : s.base + Math.sin(t * s.speed + s.phase) * 0.32;
+                    const tw = s.base + Math.sin(t * s.speed + s.phase) * 0.3;
                     ctx.globalAlpha = Math.max(0, tw);
                     ctx.fillStyle = '#f2ecdd';
                     ctx.beginPath();
-                    ctx.arc(s.x, s.y, s.r * s.layer, 0, Math.PI * 2);
+                    ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
                     ctx.fill();
                 }
-                ctx.globalAlpha = 1;
-                if (!reduceMotion) { rafId = requestAnimationFrame(frame); }
+                requestAnimationFrame(frame);
             }
 
-            function start() {
-                if (running) return;
-                running = true;
-                if (reduceMotion) { frame(0); } else { rafId = requestAnimationFrame(frame); }
-            }
-
-            function stop() {
-                running = false;
-                if (rafId) cancelAnimationFrame(rafId);
-            }
-
-            let resizeTimer;
-            window.addEventListener('resize', () => {
-                clearTimeout(resizeTimer);
-                resizeTimer = setTimeout(() => { build(); if (reduceMotion) frame(0); }, 200);
-            });
-            document.addEventListener('visibilitychange', () => {
-                if (document.hidden) { stop(); } else { start(); }
-            });
-
-            return { init() { build(); start(); } };
+            build();
+            requestAnimationFrame(frame);
+            window.addEventListener('resize', build);
         })();
 
-        const Reveal = (function () {
-            function init() {
-                const els = document.querySelectorAll('.reveal');
-                if (!('IntersectionObserver' in window)) {
-                    els.forEach(el => el.classList.add('visible'));
-                    return;
-                }
-                const io = new IntersectionObserver((entries) => {
-                    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
-                }, { threshold: 0.18 });
-                els.forEach(el => io.observe(el));
+        // Chapter Step Controller
+        function nextChapter(targetId) {
+            document.querySelectorAll('.chapter-stage').forEach(el => el.classList.remove('active'));
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.classList.add('active');
             }
-            return { init };
-        })();
+        }
 
-        const Loader = (function () {
-            const el = document.getElementById('loader');
-            const found = document.getElementById('ledgerFound');
-            const lines = Array.from(document.querySelectorAll('.ln'));
-            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        // Animated Chapter 5 Reveal Timing Sequence
+        function revealSequence() {
+            const map = document.getElementById('leoMap');
+            const btn = document.getElementById('illuminateBtn');
+            btn.style.opacity = '0';
+            btn.style.pointerEvents = 'none';
 
-            function typeLine(line, cb) {
-                const text = line.getAttribute('data-text');
-                line.classList.add('show');
-                if (reduceMotion) { line.textContent = text; cb(); return; }
-                let i = 0;
-                line.innerHTML = '<span class="caret"></span>';
-                const iv = setInterval(() => {
-                    i++;
-                    line.innerHTML = text.slice(0, i) + '<span class="caret"></span>';
-                    if (i >= text.length) { clearInterval(iv); line.innerHTML = text; cb(); }
-                }, 26);
-            }
+            // 1. Illuminate Leo slow-glow
+            map.classList.add('illuminated');
 
-            function run() {
-                document.body.style.overflow = 'hidden';
-                if (reduceMotion) {
-                    lines.forEach(l => { l.classList.add('show'); l.textContent = l.getAttribute('data-text'); });
-                    found.classList.add('show');
-                    setTimeout(finish, 700);
-                    return;
-                }
-                let idx = 0;
-                function next() {
-                    if (idx >= lines.length) {
-                        // Changed second parameter to 4000ms (4 seconds) so the final line lingers perfectly!
-                        setTimeout(() => { found.classList.add('show'); setTimeout(finish, 4000); }, 200);
-                        return;
-                    }
-                    typeLine(lines[idx], () => { idx++; setTimeout(next, 160); });
-                }
-                next();
-            }
-            function finish() {
-                el.classList.add('hidden');
-                document.body.style.overflow = 'auto';
-            }
-            return { run };
-        })();
+            // 2. Transition to Chapter 5 after constellation glows
+            setTimeout(() => {
+                nextChapter('ch-5');
 
-        (function () {
-            const el = document.getElementById('todayLine');
-            const d = new Date();
-            const opts = { weekday: 'long', month: 'long', day: 'numeric' };
-            el.textContent = 'Looking up on ' + d.toLocaleDateString(undefined, opts);
-        })();
+                // 3. Pause for a couple of seconds before dropping the name
+                setTimeout(() => {
+                    const name = document.getElementById('finalName');
+                    name.classList.add('show');
 
-        Starfield.init();
-        Reveal.init();
-        Loader.run();
+                    // 4. Fade in the SkyView button smoothly right after her name appears
+                    setTimeout(() => {
+                        const skyWrap = document.getElementById('skyviewWrap');
+                        skyWrap.style.opacity = '1';
+                    }, 1800);
+
+                }, 2200);
+
+            }, 2800);
+        }
     </script>
 </body>
 

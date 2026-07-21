@@ -22,7 +22,7 @@
     <a class="skip-link" href="#letter">Skip to letter</a>
     <div id="progress" role="presentation"></div>
     <canvas id="starfield" aria-hidden="true"></canvas>
-    <div class="corner-log" aria-hidden="true">LOG NO. 001 — REGULUS — DEDICATED 09.08.2026</div>
+    <div class="corner-log" aria-hidden="true">LOG NO. 001 - REGULUS - DEDICATED 09.08.2026</div>
 
     <!-- High-End Observatory Telescope Loader Screen Overlay -->
     <div id="loader" role="status" aria-live="polite">
@@ -378,7 +378,7 @@
                             inner.appendChild(q);
                         }
                         else if (block.type === 'signature' && page.slug === 'quote') {
-                            const sign = document.createElement('div'); sign.className = 'finale-sign reveal d1'; sign.textContent = props.text.replace('— ', '');
+                            const sign = document.createElement('div'); sign.className = 'finale-sign reveal d1'; sign.textContent = props.text.replace('- ', '');
                             const bridge = document.createElement('p'); bridge.className = 'bridge-line reveal d2'; bridge.textContent = 'This letter is read once. The sky is there whenever you need it.';
                             inner.appendChild(sign);
                             inner.appendChild(bridge);
@@ -387,7 +387,7 @@
                             inner.innerHTML = `<span class="eyebrow reveal">Begin the Journey</span><h2 id="findstar-title" class="reveal d1" style="font-size:clamp(1.9rem,4.6vw,2.5rem); font-style:italic; margin-top:14px;">Find Our Star</h2>`;
 
                             const btn = document.createElement('a'); btn.className = 'cta-btn reveal d2'; btn.href = './tonight.html'; btn.textContent = '✦ Find Our Star';
-                            const note = document.createElement('p'); note.className = 'cta-note reveal d3'; note.textContent = 'A living page, worth returning to — tonight, and every night after.';
+                            const note = document.createElement('p'); note.className = 'cta-note reveal d3'; note.textContent = 'A living page, worth returning to - tonight, and every night after.';
                             inner.appendChild(btn);
                             inner.appendChild(note);
                         }

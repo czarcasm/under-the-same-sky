@@ -41,27 +41,31 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Hi Love,"
+              "text": "Shivanjali,"
             },
             {
               "type": "paragraph",
-              "text": "Some gifts fade. Flowers wilt. Chocolates disappear. Even photographs become old."
+              "text": "35 years ago, a light entered this world-one that was destined to bring warmth, grace, and an unforgettable kind of brilliance to everyone fortunate enough to cross its path."
             },
             {
               "type": "paragraph",
-              "text": "But I wanted to give you something that would always be waiting whenever you looked up."
+              "text": "Long before you became my partner or Nitvika’s mother, you were already your own fierce, beautiful soul. Your laughter, your wisdom, and the quiet strength you carry into every room have always set you apart."
             },
             {
               "type": "paragraph",
-              "text": "So today, I dedicate the brightest light in the heart of Leo to you."
+              "text": "Some birthday gifts fade with time. Flowers wilt, chocolates disappear, and everyday tokens get tucked away in drawers. But on your 35th revolution around the sun, I wanted to give you something that would always be waiting whenever you look up."
             },
             {
               "type": "paragraph",
-              "text": "Every time we find this star together, I hope it reminds you that no matter where life takes us, my heart will always find its way back to yours."
+              "text": "So today, I dedicate Regulus-the bright, beating heart of Leo-to you. A light that has travelled seventy-nine years across space just to reach us, mirroring the steady, enduring warmth you bring into our lives every single day."
             },
             {
               "type": "paragraph",
-              "text": "Happy Birthday."
+              "text": "Whenever life feels busy or overwhelming, just look up at the night sky. Let that shining light remind you of the extraordinary woman you are, how deeply you are cherished, and how my heart will always find its way back to yours."
+            },
+            {
+              "type": "paragraph",
+              "text": "Happy 35th Birthday, my love."
             },
             {
               "type": "signature",
@@ -80,33 +84,33 @@
           "blocks": [
             {
               "type": "fact",
-              "label": "⭐ Star",
-              "value": "Regulus"
+              "label": "⭐ Designated Name",
+              "value": "Regulus (α Leonis)"
             },
             {
               "type": "fact",
               "label": "♌ Constellation",
-              "value": "Leo"
+              "value": "Leo the Lion"
             },
             {
               "type": "fact",
               "label": "✨ Meaning",
-              "value": "Heart of the Lion"
+              "value": "Little King / Lion's Heart"
             },
             {
               "type": "fact",
               "label": "🌍 Distance",
-              "value": "79 light years"
+              "value": "79.3 Light Years"
             },
             {
               "type": "fact",
-              "label": "🔭 Magnitude",
-              "value": "1.35"
+              "label": "🔭 Apparent Magnitude",
+              "value": "+1.35 (Naked Eye)"
             },
             {
               "type": "fact",
-              "label": "👑 Also known as",
-              "value": "The Little King"
+              "label": "📍 Celestial Coordinates",
+              "value": "RA 10h 08m / Dec +11° 58′"
             }
           ]
         }
@@ -143,35 +147,41 @@
           "blocks": [
             {
               "type": "paragraph",
-              "text": "Light that has already travelled seventy-nine years to reach us isn't going anywhere. It doesn't wilt on the fifth day, or need water, or fade in a drawer."
+              "text": "Light that has already travelled seventy-nine years to reach us isn't going anywhere. It doesn't wilt, or fade, or lose its shimmer with time."
             },
             {
               "type": "paragraph",
-              "text": "Before it was just the two of us. Now there are three hearts under the same sky — and every chapter since has been watched over by a light that was always waiting to be noticed."
+              "text": "35 years of your story, and every chapter since has been watched over by a sky that was always waiting to celebrate you."
             },
             {
               "type": "timeline_event",
-              "marker": "❤️",
-              "title": "First Met",
-              "description": "The beginning of us"
+              "marker": "✨",
+              "title": "1991 · The Original Light",
+              "description": "35 orbits ago, Shivanjali's journey began-bringing warmth, grace, and effortless brilliance into the world."
+            },
+            {
+              "type": "timeline_event",
+              "marker": "👑",
+              "title": "Her Own Trail",
+              "description": "Building her own wisdom, her distinct laughter, her fierce soul, and the quiet strength she carries into every room."
             },
             {
               "type": "timeline_event",
               "marker": "💍",
-              "title": "Married",
-              "description": "Two orbits become one"
+              "title": "Two Orbits Align",
+              "description": "When two separate constellations crossed paths and linked forever-making my world infinitely brighter."
             },
             {
               "type": "timeline_event",
               "marker": "👶",
-              "title": "Nitvika",
-              "description": "Our brightest light born"
+              "title": "Our Little Light",
+              "description": "Watching her step into motherhood with boundless love, filling our home with warmth and raising our little light."
             },
             {
               "type": "timeline_event",
               "marker": "⭐",
-              "title": "Regulus Dedicated",
-              "description": "9 August 2026"
+              "title": "35th Orbit · Regulus",
+              "description": "35 revolutions around the sun. A star in the heart of Leo dedicated to an extraordinary woman forever."
             }
           ]
         }
@@ -190,7 +200,7 @@
             },
             {
               "type": "signature",
-              "text": "— Harshit"
+              "text": "- Harshit"
             }
           ]
         }

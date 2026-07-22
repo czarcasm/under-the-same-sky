@@ -40,14 +40,29 @@
             <div class="meteor m3"></div>
         </div>
 
-        <!-- Centered Fine-Art Astronomical Telemetry Instrument -->
-        <div class="reticle-container" aria-hidden="true">
-            <div class="reticle-ring-outer"></div>
-            <div class="reticle-ring-mid"></div>
-            <div class="reticle-ring-inner"></div>
-            <div class="reticle-axis-y"></div>
-            <div class="reticle-axis-x"></div>
-            <div class="reticle-core-node"></div>
+        <!-- 3D ARMILLARY SPHERE LOADER (SVG ANTIALIASED) -->
+        <div class="orrery-container" aria-hidden="true">
+            <div class="orrery-ring ring-a">
+                <svg class="ring-svg" viewBox="0 0 200 200">
+                    <circle cx="100" cy="100" r="98" class="svg-path path-a" />
+                </svg>
+                <span class="ring-node node-a"></span>
+            </div>
+
+            <div class="orrery-ring ring-b">
+                <svg class="ring-svg" viewBox="0 0 160 160">
+                    <circle cx="80" cy="80" r="78" class="svg-path path-b" />
+                </svg>
+                <span class="ring-node node-b"></span>
+            </div>
+
+            <div class="orrery-ring ring-c">
+                <svg class="ring-svg" viewBox="0 0 120 120">
+                    <circle cx="60" cy="60" r="58" class="svg-path path-c" />
+                </svg>
+            </div>
+
+            <div class="orrery-core"></div>
         </div>
 
         <p class="loader-text">A letter written in starlight…</p>
@@ -171,7 +186,7 @@
                 setTimeout(() => {
                     const loader = document.getElementById('loader');
                     loader.classList.add('hidden');
-                }, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 600 : 3500);
+                }, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 600 : 5000);
 
             } catch (err) {
                 console.error("Keepsake Engine parsing hydration failure: ", err);

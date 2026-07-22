@@ -1174,7 +1174,9 @@ body.tonight-view {
   z-index: 10;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 1.2s ease, transform 1.2s ease;
+  transition:
+    opacity 1.2s ease,
+    transform 1.2s ease;
   transform: translateY(15px);
 }
 
@@ -1237,7 +1239,9 @@ body.tonight-view {
   height: min(45vw, 260px);
   margin: 20px auto 30px;
   opacity: 0.2;
-  transition: opacity 2s ease, filter 2s ease;
+  transition:
+    opacity 2s ease,
+    filter 2s ease;
   filter: drop-shadow(0 0 2px rgba(227, 189, 130, 0.2));
 }
 
@@ -1254,7 +1258,9 @@ body.tonight-view {
   letter-spacing: 0.02em;
   opacity: 0;
   transform: scale(0.95);
-  transition: opacity 2.5s ease, transform 2.5s ease;
+  transition:
+    opacity 2.5s ease,
+    transform 2.5s ease;
   text-shadow: 0 0 25px rgba(227, 189, 130, 0.6);
 }
 
@@ -1280,4 +1286,142 @@ body.tonight-view {
 
 .home-pill:hover {
   color: var(--brass-bright);
+}
+
+/* --- 3D ARMILLARY SPHERE LOADER (SMOOTH SVG VECTOR RINGS) --- */
+.orrery-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  margin-bottom: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.orrery-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.ring-a {
+  animation: tumble-a 7s linear infinite;
+}
+.ring-b {
+  inset: 20px;
+  animation: tumble-b 9.5s linear infinite reverse;
+}
+.ring-c {
+  inset: 40px;
+  animation: tumble-c 13s linear infinite;
+}
+
+/* SVG Vector Stroke Quality Rules */
+.ring-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+
+.svg-path {
+  fill: none;
+  vector-effect: non-scaling-stroke; /* Keeps stroke weight uniform when tilted */
+  shape-rendering: geometricPrecision; /* Forces sub-pixel anti-aliasing */
+}
+
+.path-a {
+  stroke: rgba(227, 189, 130, 0.65);
+  stroke-width: 1.2px;
+}
+
+.path-b {
+  stroke: rgba(184, 147, 92, 0.5);
+  stroke-width: 1px;
+}
+
+.path-c {
+  stroke: rgba(184, 147, 92, 0.35);
+  stroke-width: 1px;
+  stroke-dasharray: 4, 4;
+}
+
+/* 3D Tumble Keyframes */
+@keyframes tumble-a {
+  from {
+    transform: rotateX(68deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(68deg) rotateZ(360deg);
+  }
+}
+@keyframes tumble-b {
+  from {
+    transform: rotateY(58deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateY(58deg) rotateZ(360deg);
+  }
+}
+@keyframes tumble-c {
+  from {
+    transform: rotateX(30deg) rotateY(50deg) rotateZ(0deg);
+  }
+  to {
+    transform: rotateX(30deg) rotateY(50deg) rotateZ(360deg);
+  }
+}
+
+/* Star Nodes */
+.ring-node {
+  position: absolute;
+  top: -3.5px;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  margin-left: -3.5px;
+  border-radius: 50%;
+  backface-visibility: hidden;
+}
+
+.ring-node.node-a {
+  background: var(--brass-bright);
+  box-shadow: 0 0 10px 2px var(--brass-bright);
+}
+
+.ring-node.node-b {
+  background: #ffffff;
+  box-shadow:
+    0 0 10px 2px rgba(227, 189, 130, 0.8),
+    0 0 4px 1px #ffffff;
+}
+
+/* Central Core */
+.orrery-core {
+  width: 14px;
+  height: 14px;
+  background: var(--brass-bright);
+  border-radius: 50%;
+  z-index: 10;
+  position: relative;
+  box-shadow: 0 0 16px 3px var(--brass-bright);
+  animation: reticlePulse 2.4s ease-in-out infinite alternate;
+}
+
+@keyframes reticlePulse {
+  0% {
+    transform: scale(0.9);
+    filter: drop-shadow(0 0 2px var(--brass-bright));
+  }
+  100% {
+    transform: scale(1.25);
+    filter: drop-shadow(0 0 14px var(--brass-bright))
+      drop-shadow(0 0 22px rgba(227, 189, 130, 0.5));
+  }
 }

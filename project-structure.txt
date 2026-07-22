@@ -1,5 +1,6 @@
 under-the-same-sky/
-├── index.html               # Clean, root layout shell & dynamic module hydrator
+├── index.html               # Main story experience & hero view
+├── tonight.html             # Interactive "Under the Same Sky" chapter experience
 ├── test.html                # In-browser micro-testing suite runner
 └── src/
     ├── css/

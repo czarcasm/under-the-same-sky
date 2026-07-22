@@ -136,6 +136,8 @@
         </div>
     </div>
 
+    <script src="./src/js/lockout.js"></script>
+
     <script>
         // Starfield Canvas Background Engine
         (function () {
@@ -191,7 +193,7 @@
             btn.style.pointerEvents = 'none';
 
             // 1. Illuminate Leo slow-glow
-           if (map) map.classList.add('illuminated');
+            if (map) map.classList.add('illuminated');
 
             // 2. Transition to Chapter 5 after constellation glows
             setTimeout(() => {
